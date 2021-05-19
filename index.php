@@ -17,5 +17,44 @@ include("Common/navigation.php");
 </div>
 
 <?php
+
+    //Constante d'envirronnement
+    define("DBHOST","localhost");
+    define("DBUSER","root");
+    define("DBPASS","");
+    define("DBNAME","projet mmorpg");
+
+    //Data Source Name de connexion
+    $dsn = "mysql:dbname=". DBNAME .";host=". DBHOST;
+    
+
+    //Connexion à la base de données
+    try{
+        //On instancie PDO
+        $db = new PDO($dsn, DBUSER,DBPASS);
+        
+        //On s'assure d'envoi des données UTF-8
+        $db->exec("SET NAMES utf-8");
+
+    }catch(PDOException $e){
+        die("Erreur:". $e->getMessage());
+    }
+
+    //Ici il est connectés à la base
+    //On peut récupérer la liste des utilisateurs(visiteurs)
+    $sql = "SELECT * FROM `visiteurs`";
+
+    //On execute directement la requête
+    $requete = $db->query($sql);
+
+    //On récupère les données (fetch ou fetch all)
+
+    $visiteur = $requete->fetch(PDO::FETCH_ASSOC);
+    echo "<pre>";
+    var_dump($visiteur);
+    echo "</pre>";
+?>
+
+<?php
 include("Common/footer.php");
 ?>
