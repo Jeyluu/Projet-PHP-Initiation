@@ -5,17 +5,6 @@ include("Common/navigation.php");
 
     <img src="ressources/images/banniere.jpg" alt="banniereProjetMMORPG">
 
-<div class="introduction">
-    <h1>Test d'application</h1>
-    
-    <h2>Notre volonté</h2>
-    <p class="intro-presentation">
-        Voici un petite introduction au nouveau MMORPG qui sortira le 1er Janvier 2023. Faire de notre jeu une référence dans le MMORPG.<br>
-        Pour y arriver nous aurons besoin de vous, dans une démarche d'amélioration du jeu avoir vos retours sur les graphiques , l'économie et tout les autres points du jeu.
-        Ensemble, nous deviendrons plus fort !
-    </p>
-</div>
-
 <?php
 
     //Constante d'envirronnement
@@ -36,6 +25,9 @@ include("Common/navigation.php");
         //On s'assure d'envoi des données UTF-8
         $db->exec("SET NAMES utf-8");
 
+        //On définit le mode de "Fetch" envoyé par défaut
+        $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+
     }catch(PDOException $e){
         die("Erreur:". $e->getMessage());
     }
@@ -49,10 +41,23 @@ include("Common/navigation.php");
 
     //On récupère les données (fetch ou fetch all)
 
-    $visiteur = $requete->fetch(PDO::FETCH_ASSOC);
-    echo "<pre>";
-    var_dump($visiteur);
-    echo "</pre>";
+    $visiteur = $requete->fetchAll();
+    
+    //Ajouter un utilisateur
+    $sql = "INSERT INTO `visiteurs` (`nom`,`prenom`,`email`,`motdepasse`) VALUES ('Supprimer','Pauline','supprimer@gmail.com','test')";
+    $requete = $db->query($sql);
+
+    //Modifier un utilisateur
+    $sql = "UPDATE `visiteurs` SET `motdepasse` = 'test' WHERE `identifiant` = 3";
+
+    //supprimer un utilisateur
+    $sql = "DELETE FROM `visiteurs` WHERE `identifiant` > 3";
+    $requete = $db->query($sql);
+    
+
+    //Savoir combien de lignes ont été supprimées
+    echo $requete->rowCount();
+
 ?>
 
 <?php
