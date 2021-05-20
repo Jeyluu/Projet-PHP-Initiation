@@ -1,65 +1,39 @@
 <?php
-include("Common/header.php");
-include("Common/navigation.php");
+    require_once("Common/fonctions.php");
+    include("Common/header.php");
+    include("Common/navigation.php");
 ?>
 
     <img src="ressources/images/banniere.jpg" alt="banniereProjetMMORPG">
 
+
+
 <?php
-
-    //Constante d'envirronnement
-    define("DBHOST","localhost");
-    define("DBUSER","root");
-    define("DBPASS","");
-    define("DBNAME","projet mmorpg");
-
-    //Data Source Name de connexion
-    $dsn = "mysql:dbname=". DBNAME .";host=". DBHOST;
+    require_once("Common/connexionbdd.php");
     
+    $nom = "test1";
+    $motdepasse = "test";
 
-    //Connexion à la base de données
-    try{
-        //On instancie PDO
-        $db = new PDO($dsn, DBUSER,DBPASS);
-        
-        //On s'assure d'envoi des données UTF-8
-        $db->exec("SET NAMES utf-8");
+    //Requête préparée
 
-        //On définit le mode de "Fetch" envoyé par défaut
-        $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+    $sql = "SELECT * FROM `visiteurs` WHERE `nom` = :nom AND `motdepasse`= :mdp";
 
-    }catch(PDOException $e){
-        die("Erreur:". $e->getMessage());
-    }
+    $requete = $db->prepare($sql);
 
-    //Ici il est connectés à la base
-    //On peut récupérer la liste des utilisateurs(visiteurs)
-    $sql = "SELECT * FROM `visiteurs`";
+    //On injecte les valeurs "bindValue"
+    $requete->bindParam(":nom",$nom, PDO::PARAM_STR);
+    $requete->bindValue(":mdp",$motdepasse, PDO::PARAM_STR);
 
-    //On execute directement la requête
-    $requete = $db->query($sql);
+    $nom = "Jean"; // si ne colle pas avec le mot de passe il ne trouvera rien
 
-    //On récupère les données (fetch ou fetch all)
+    //On execute la requete
+    $requete->execute();
 
     $visiteur = $requete->fetchAll();
-    
-    //Ajouter un utilisateur
-    $sql = "INSERT INTO `visiteurs` (`nom`,`prenom`,`email`,`motdepasse`) VALUES ('Supprimer','Pauline','supprimer@gmail.com','test')";
-    $requete = $db->query($sql);
 
-    //Modifier un utilisateur
-    $sql = "UPDATE `visiteurs` SET `motdepasse` = 'test' WHERE `identifiant` = 3";
+    echo "<pre>";
+    var_dump($visiteur);
+    echo "</pre>";
 
-    //supprimer un utilisateur
-    $sql = "DELETE FROM `visiteurs` WHERE `identifiant` > 3";
-    $requete = $db->query($sql);
-    
-
-    //Savoir combien de lignes ont été supprimées
-    echo $requete->rowCount();
-
-?>
-
-<?php
-include("Common/footer.php");
+    include("Common/footer.php");
 ?>
