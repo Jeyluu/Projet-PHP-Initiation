@@ -52,7 +52,7 @@ $title = strip_tags($article["nom"]);
 
     <article class="conteneurArticle">
         
-            <h3><?= strip_tags($article["nom"]) ?></h3>
+            <h3><?= strip_tags($article["titre"]) ?></h3>
             <p><?= strip_tags($article["contenu"]) ?></p>
             <p class="dateArticle">Article posté le : <?= strip_tags($article["DateCreation"]) ?></p>
         
