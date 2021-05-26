@@ -18,10 +18,10 @@
     $title = "Espace administrateur";
 
     include("../Common/admin-header.php");
-    include("../Common/navigation.php");
+    include("../Common/admin-navigation.php");
 ?>
 <h2>Bienvenue sur l'espace Administrateur</h2>
-<a href="articles/ajout.php"><input type="button" value="Ajouter un article"></a>
+<a href="ajout.php"><input type="button" value="Ajouter un article"></a>
 
 
 <div class="table-responsive">
@@ -31,7 +31,7 @@
                 <td>Titre de l'article</td>
                 <td>Prénom de l'auteur</td>
                 <td>Nom de l'auteur</td>
-                <td>Date</td>
+                <td>Dernière modification</td>
                 <td>Modifier l'article</td>
                 <td>Suppression de l'article</td>
             </tr>
@@ -44,8 +44,8 @@
                 <td><?= strip_tags($article["prenom"])?></td>
                 <td><?= strip_tags($article["nom"])?></td>
                 <td><?= strip_tags($article["DateCreation"])?></td>
-                <td><a href="articles/modification.php"><input type="button" value="Modifier"></a></td>
-                <td><a href=""><input type="button" value="Supprimer"></a></td>
+                <td><a href="modification.php?id=<?= $article["id"]?>"><input type="button" value="Modifier"></a></td>
+                <td><a href="suppression.php?id=<?=$article["id"]?>"><input type="button" value="Supprimer"></a></td>
             </tr>
             <?php endforeach; ?>
         </tbody>

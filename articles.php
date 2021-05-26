@@ -29,7 +29,7 @@ $articles = $requete->fetchAll();
 
     <article class="conteneurArticle">
         
-            <a href="article.php?id=<?= $article["id"]?> " class="lienArticle"><h3><?= strip_tags($article["titre"]) ?></h3>
+            <a href="article.php?id=<?= $article["id"]?>" class="lienArticle"><h3><?= strip_tags($article["titre"]) ?></h3>
             <p><?= strip_tags($article["contenu"]) ?></p>
             <p class="dateArticle">Article posté le : <?= strip_tags($article["DateCreation"]) ?></p></a>
         

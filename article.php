@@ -38,7 +38,7 @@ if(!$article){
 
 //Ici on a un article
 //On défini le titre
-$title = strip_tags($article["nom"]);
+$title = strip_tags($article["titre"]);
 
 
     include("Common/header.php");
