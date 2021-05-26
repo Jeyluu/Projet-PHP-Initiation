@@ -1,5 +1,7 @@
 <nav>
     <ul>
+        <li><a href="connexion.php">Connexion</a></li>
+        <li><a href="inscription.php">Inscription</a></li>
         <li><a href="admin/administrateur.php">Espace Administrateur</a></li>
         <li><a href="visiteur.php">Espace Visiteur</a></li>
         <li><a href="articles.php">Les mises à jours</a></li>

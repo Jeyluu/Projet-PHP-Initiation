@@ -25,30 +25,30 @@
         die("Erreur:". $e->getMessage());
     }
 
-    //Ici il est connectés à la base
-    //On peut récupérer la liste des utilisateurs(visiteurs)
-    $sql = "SELECT * FROM `visiteurs`";
+    // //Ici il est connectés à la base
+    // //On peut récupérer la liste des utilisateurs(visiteurs)
+    // $sql = "SELECT * FROM `visiteurs`";
 
-    //On execute directement la requête
-    $requete = $db->query($sql);
+    // //On execute directement la requête
+    // $requete = $db->query($sql);
 
-    //On récupère les données (fetch ou fetch all)
+    // //On récupère les données (fetch ou fetch all)
 
-    $visiteur = $requete->fetchAll();
+    // $visiteur = $requete->fetchAll();
     
-    //Ajouter un utilisateur
-    $sql = "INSERT INTO `visiteurs` (`nom`,`prenom`,`email`,`motdepasse`) VALUES ('Supprimer','Pauline','supprimer@gmail.com','test')";
-    $requete = $db->query($sql);
+    // //Ajouter un utilisateur
+    // $sql = "INSERT INTO `visiteurs` (`nom`,`prenom`,`email`,`motdepasse`) VALUES ('Supprimer','Pauline','supprimer@gmail.com','test')";
+    // $requete = $db->query($sql);
 
-    //Modifier un utilisateur
-    $sql = "UPDATE `visiteurs` SET `motdepasse` = 'test' WHERE `identifiant` = 3";
+    // //Modifier un utilisateur
+    // $sql = "UPDATE `visiteurs` SET `motdepasse` = 'test' WHERE `identifiant` = 3";
 
-    //supprimer un utilisateur
-    $sql = "DELETE FROM `visiteurs` WHERE `identifiant` > 3";
-    $requete = $db->query($sql);
+    // //supprimer un utilisateur
+    // $sql = "DELETE FROM `visiteurs` WHERE `identifiant` > 3";
+    // $requete = $db->query($sql);
     
 
-    //Savoir combien de lignes ont été supprimées
-    // echo $requete->rowCount();
+    // //Savoir combien de lignes ont été supprimées
+    // // echo $requete->rowCount();
 
 ?>
