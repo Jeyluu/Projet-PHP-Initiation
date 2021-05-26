@@ -33,6 +33,7 @@ $title = "Inscription";
             //On lance la requête
             $requete->execute();
 
+            //Connexion de l'utilisateur
 
         }else{
             die ("Le formulaire n'est pas complet.");
