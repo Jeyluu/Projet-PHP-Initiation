@@ -1,4 +1,6 @@
 <?php
+//On démarre la session PHP
+session_start();
 //Verif si ID présent
 if(!isset($_GET["id"]) || empty($_GET["id"])){
     //Je n'ai pas d'ID

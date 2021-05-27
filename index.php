@@ -1,5 +1,7 @@
 <?php
 $title = "Accueil";
+//On démarre la session PHP
+session_start();
     require_once("Common/fonctions.php");
     include("Common/header.php");
     include("Common/navigation.php");

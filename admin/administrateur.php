@@ -1,5 +1,6 @@
 <?php
-
+    //On démarre la session PHP
+    session_start();
     //Je me connecte à la base de donnée
     //On va chercher les articles dans la base de données
     require_once("../Common/connexionbdd.php");

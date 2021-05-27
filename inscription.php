@@ -1,6 +1,12 @@
 <?php
 $title = "Inscription";
-
+    //On démarre la session PHP
+            session_start();
+            if(isset($_SESSION["visiteur"])){
+                header("Location: index.php");
+                exit;
+            }
+            
     //Vérification de l'envoi du formulaire
     if(!empty($_POST)){
         //Formulaire envoyé donc on vérifie que tous les champs sont remplis
@@ -15,7 +21,7 @@ $title = "Inscription";
                 die ("La donnée dans le champs adresse Email ne correspond pas.");
             }
             //Hasher le mot de passe
-            $pass = password_hash($_POST["motdepasse"], PASSWORD_ARGON2ID);
+            $pass = password_hash($_POST["motdepasse"], PASSWORD_BCRYPT);
             
             //Enregistrement en base de donnée
             require_once("Common/connexionbdd.php");
@@ -33,7 +39,21 @@ $title = "Inscription";
             //On lance la requête
             $requete->execute();
 
+            //On recupère l'ID de l'utilisateur
+            $id = $db->lastInsertId();
+
             //Connexion de l'utilisateur
+            
+            //On stock dans $_SESSION les informations de l'utilisateur dans le cookie
+            $_SESSION["visiteur"] = [
+                "id" => $id,
+                "nom" => $nom,
+                "prenom" => $_POST["prenom"],
+                "email" => $_POST["email"]
+            ];
+            
+            //On rediriger vers la page de profil
+            header("Location: profil.php");
 
         }else{
             die ("Le formulaire n'est pas complet.");

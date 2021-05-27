@@ -1,6 +1,7 @@
 <?php
 $title = "Les mises à jours";
-
+    //On démarre la session PHP
+    session_start();
     
     include("Common/header.php");
     include("Common/navigation.php");
